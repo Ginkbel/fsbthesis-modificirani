@@ -15,7 +15,5 @@ FSBthesis-modificirani je LaTeX stil koji je derivat originalnog FSBthesis stila
   <summary>
   Postupak instalacije LaTeX-a i modificiranog FSBthesis paketa za korištenje lokalno
   </summary>
-    Najprije je potrebno na računalo instalirati osnovnu verziju <a href="https://www.latex-project.org/get/">LaTeX-a</a>. Zatim je potrebno naredbom 
-    ``` git clone https://github.com/Ginkbel/fsbthesis-modificirani.git ``` 
-    klonirati ovaj repozitorij.
+
 </details>
