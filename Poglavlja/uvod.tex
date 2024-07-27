@@ -1,0 +1,50 @@
+\chapter{Uvod}
+
+Ovo poglavlje poslužit će za uvod u problem koji se rješava u ovom
+radu, u slučaju doktorske disertacije ovdje se uobičajeno postavlja odgovarajuća
+hipoteza.
+
+\section{Primjer podpoglavlja}
+Korištena literatura se popisuje u popisu literature pod poglavljem
+``Literatura'', a svaka od njih mora biti citirana bar jednom u tekstu, kao
+npr.\cite{Siegwart2004}. Literatura mora biti popisana po redoslijedu
+pojavljivanja u tekstu za što se brine sami \LaTeX. 
+
+Tekst tekst tekst tekst tekst tekst primjer reference
+, i jo\v{s} jedan citat \cite{cern_tim}.
+Tekst tekst tekst tekst tekst tekst.
+
+\subsection{Primjer dubljeg strukturiranja teksta}
+Slijedi prvi primjer slike (pogl.sliku~\ref{fig1})
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=1.2cm]{01_Uvod/fsb_logo_n}
+  \hangcaption{Primjer slike -- logo FSB-a; kod slika primijenjeno je
+  zaglavlje s uvlačenjem, \emph{vise\'{c}e} zaglavlje s paketom \emph{hangcaption}}
+  \label{fig1}
+\end{figure}
+\nomenclature[Kf]{$FSB$}{Fakultet strojarstva i brodogradnje}%
+%
+Slijedi drugi mali primjer slike (pogledaj sliku~\ref{fig2}). U pravilu, na
+svaku se koja se pojavljuje treba pozvati u tekstu.
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=3.2cm]{01_Uvod/unizg_plavi_t2}\\
+  \hangcaption{Primjer slike -- logo Sveučilišta u Zagrebu.}
+  \label{fig2}
+\end{figure}
+
+Pored slike dan je i primjer tablice (\ref{tablica}). Uobičajen je stil da se
+za tablice zaglavlje piše iznad same tablice (za razliku od slika). 
+\begin{table}[H]
+\hangcaption{Primjer tablice}
+\label{tablica}
+  \centering
+\begin{tabular}{|c|c|} \hline
+    $x$ & $i$ \\\hline\hline
+    A & 1 \\
+    B & 2 \\
+    C & 3 \\
+    D & 4 \\ \hline
+\end{tabular}
+\end{table}

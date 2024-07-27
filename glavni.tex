@@ -1,0 +1,303 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc} %s ovim mogu pisati hrv znakove direktno na linux i win. platformama (ali samo u utf-8 encodingu)
+\usepackage{amsmath}
+
+\RequirePackage[pdftex]{graphicx}
+
+\usepackage[english,croatian]{babel}
+% \usepackage[croatian]{babel} % ako se piše rad na hrvatskom jeziku
+\usepackage{xspace}
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-} % Allow line breaks at slashes and hyphens
+
+\usepackage{hangcaption}
+\usepackage[english,croatian,refpage]{nomencl}
+\usepackage{float}
+\makenomenclature
+%\usepackage[master,avant]{fsbthesis}
+\usepackage[diplomski,avant]{fsbthesis}
+% ili npr. \usepackage[avant,draft]{fsbthesis} %za doktorat - draft
+%   ispisuje broj verzije teksta (promijeni naredbu \ver) i datum
+% ili npr. \usepackage[zavrsni,avant]{fsbthesis} %za zavrsni rad
+% ili npr. \usepackage[diplomski,avant]{fsbthesis} %za diplomski rad
+% ili npr. \usepackage[diplomski,avant,draft]{fsbthesis} % za diplomski rad uz draft opciju - dodaje oznake datuma/ver.
+% ili npr. \usepackage[master,avant]{fsbthesis} za dipl.rad na engl. ondnosno master's thesis
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc}
+
+\vfuzz=2.7pt % Don't bother to report overfull boxes < 2.7pt
+\graphicspath{{Slike/}} % dodaj poseban direktoriji za slike (vrlo prakticno)
+\setlength{\headsep}{5pt} % udaljenost početka teksta od donjeg dijela header-a
+
+%-- sljedece elemente je potrebno prilagoditi vasem radu:
+\title{NASLOV DIPLOMSKOG RADA}  %-- promijeniti naziv rada
+\author{ime prezime}      %-- promijeniti autora rada
+%\date{Zagreb, July 2024}      % -- promijeniti datum: mjesec i godina - EN (za master opciju)
+\date{Zagreb, srpanj 2024.}      % -- promijeniti datum: mjesec i godina - HR
+
+\makeatletter
+\renewcommand{\FSBautor}{Moje ime i prezime} %-- promijeniti ime autora
+\renewcommand{\FSBmentor}{prof.~dr.~sc.~ime prezime} %-- promijenti titulu i ime mentora 
+\renewcommand{\FSBgodina}{2024.} %-- promijeniti godinu obrane rada
+\renewcommand{\FSBkljucnerijeci}{popis ključnih riječi: maksimalno do deset \ldots} %-- promijeniti popis kljucnih rijeci
+\renewcommand{\FSBkeywords}{list of the keywords: up to ten words} %-- promijeniti popis kljucnih rijeci na engleskom
+%-- sljedeci elementi potrebni su za doktorsku disertaciju:
+%\renewcommand{\FSBbibmentor}{
+%		dr.~sc.~ime prezime,
+%		prof. u mirovini}
+%\renewcommand{\FSBbibudk}{xxx.xx}
+%\renewcommand{\FSBbibznpolje}{zrakoplovstvo, raketna i svemirska tehnika}
+%\renewcommand{\FSBbibdatumobr}{1. travnja 2024.}
+% \renewcommand{\FSBbibznpolje}{zrakoplovstvo, raketna i svemirska tehnika}
+% \renewcommand{\FSBbibdatumobr}{1. travnja 2024.}
+% \renewcommand{\FSBbibpovjerenstvo}{prvi \v{c}lan povjerenstva, \newline
+%                                    drugi \v{c}lan povjerenstva, \newline
+%                                    tre\'{c}i \v{c}lan povjerenstva, \newline
+%                                    \v{c}etvrti \v{c}lan povjerenstva, \newline
+%                                    peti \v{c}lan povjerenstva }
+% \renewcommand{\FSBpdfbrojstrana}{111}
+% \renewcommand{\FSBpdfbrojslika}{111}
+% \renewcommand{\FSBpdfbrojtablica}{111}
+% \renewcommand{\FSBpdfbrojrefs}{111}
+\renewcommand{\thestrana}{11}
+
+\hypersetup{pdftitle=\@title,pdfauthor=\@author}
+%\hypersetup{colorlinks=false} % za print-verziju teksta bez obojanih linkova u pdf-u
+\renewcommand{\ver}{\mbox{ver.2-01}} % moja verzija ovog rada (od interesa uz draft opciju)
+
+\makeatother
+
+% osobne definicije
+\def\AR{\hbox{\textit{A}\hskip-.38em \rm R}} % aspect ratio sign
+\def\Vinf{\hbox{$V_{\infty}$}} %brzina strujanja
+
+
+\begin{document}
+%
+\pagenumbering{roman} % na pocetku rada stranice brojim rimski od (i)
+%
+\fsbkorice %-- naredba koja generira korice rada
+%
+\fsbprvilist %-- naredba koja generira prvi list iza korica
+%
+%\setcounter{brojstrana}{11}
+%\fsbbiblist
+%
+%-- unijeti svoju zahvalu
+\begin{zahvala}
+	\emph{To Donald E. Knuth \dots i druge zahvale \dots}
+\end{zahvala}
+
+%-- nije potrebno mijenjati
+\begin{izjava}
+    %-- dio izjave na EN (suvišan za dipl.rad na HR)
+    % I hereby declare that I have made this thesis independently using the
+	% knowledge acquired during my studies and the cited references.
+	% 
+	% \bigskip
+	% 
+    %-- dio izjave na HR
+	Izjavljujem da sam ovaj rad radio samostalno koristeći znanja stečena
+	tijekom studija i navedenu literaturu.
+\end{izjava}
+
+%-- ako je potrebno ovdje se moze dodati predgovor (ali to je vise primjereno dokt.disertacijama)
+% \begin{predgovor}
+% Ovdje \'{c}e se opisati \v{s}to me i za\v{s}to navelo na ovaj rad. Mogu\'{c}e je i
+% ovdje staviti zahvale.
+% 
+% Tekst tekst tekst tekst tekst tekst.
+% \end{predgovor}
+
+%-- sadrzaj:
+\clearpage
+\ifpdf
+	\phantomsection
+\fi
+\addcontentsline{toc}{chapter}{{\numberline{}\contentsname}}
+\tableofcontents
+
+%
+%-- popis slika: ukoliko ih ima
+\clearpage
+\ifpdf
+	\phantomsection
+\fi
+\addcontentsline{toc}{chapter}{{\numberline{}\listfigurename}}
+\listoffigures
+
+%-- popis tablica: ukoliko ih ima
+\clearpage
+\addcontentsline{toc}{chapter}{{\numberline{}\listtablename}}
+\listoftables
+
+%-- ako se koristi klasicni popis oznaka
+%\addcontentsline{toc}{chapter}{{\numberline {}\popoznime}}
+%	\markboth{\MakeUppercase\popoznime}{}
+%\input popozn.tex
+
+\clearpage
+\ifpdf
+	\phantomsection
+\fi
+\addcontentsline{toc}{chapter}{{\numberline {}\popoznime}}
+\markboth{\MakeUppercase\nomname}{\MakeUppercase\nomname}
+\printnomenclature
+
+\clearpage
+\addtocounter{brojstrana}{\arabic{page}}\addtocounter{brojstrana}{-1}
+    % nuzna komanda za odredjivanje ukupnog broja str.(rimskih i arapskih)
+
+%-- promijeniti sazetak
+\begin{sazetak}
+  \noindent Kratki sažetak rada na hrvatskom jeziku: najviše jedna
+  stranica, zapisan u jednom paragrafu 
+  \ldots Tekst tekst tekst tekst tekst tekst.
+\end{sazetak}
+
+%-- promijenti sazetak na EN
+\begin{abstract}
+  \noindent Short summary of the thesis in one foreign language (english): up
+  to one page in single paragraph \ldots Tekst tekst tekst tekst tekst tekst.
+\end{abstract}
+
+
+%-- kada je tekst na engleskom potrebno je dodati prošireni sažetak na hrvatskom:
+%   (za HR diplomski rad ovo je suvisno)
+% \begin{prosirenisazetak}
+% Za rad pisan na engleskom jeziku potrebno je napisati ``Prošireni sažetak'' koji
+% treba sadržavati više najbitnijih detalja i zaključaka diplomskog rada. Tekst
+% nije ograničen, ali poželjno je da ima nekoliko stranica. 
+% 
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+%  
+% \section{Tekst}
+% U ovom proširenom sažetku moguće je strukturirati tekst u poglavlja i
+% podpoglavlja. Pri tome, ako je zahtjev da poglavlja budu numerirana onda će
+% broj poglavlja imati prefiks ``0''. Tako će se razlikovati od glavnog dijela teksta. 
+% Ova poglavlja i podpoglavlja pojavit će se i u ``Sadržaju'' odnosno u
+% ``Contents''.
+% 
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+%  
+% 
+% \subsection{Drugi tekst}
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+%  
+% 
+% \section*{Tekst}
+% Ukoliko numeracija poglavlja i podpoglavlja nije od interesa dovoljno ih je u
+% definiciji označiti sa ``*'', odnosno komanda za poglavlje bi bila
+% \verb|\section*{Tekst}|. Slično se modificira i naredba \verb|\subsection*|,
+% itd. Ova poglavlja i podpoglavlja neće se pojavit u ``Sadržaju'' odnosno u
+% ``Contents''.
+% 
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+%  
+% 
+% \subsection*{Drugi tekst}
+% I ``Proširenom sažetku'' moguće je navesti (odnosno ponoviti) i najbitnije slike, slike s
+% najvažnijim rezultatima i sl. (kao npr. Sliku~\ref{fig:ps.1}).
+% Slike u ``Proširenom sažetku'' bit će numerirane s prefiksom ``0'' i pojavit
+% će se u ``List of Figures''. Na isti način uvode se i tablice.
+% \begin{figure}
+%   \centering
+%   \includegraphics[height=3.2cm]{unizg_sivi_t4s}\\
+%   \hangcaption{Primjer slike u ``Proširenom sažetku''; kod ove slike primjenjeno je
+%   \emph{vise\'{c}e} zaglavlje -- hangcaption}
+%   \label{fig:ps.1}
+% \end{figure}
+% 
+% \begin{figure}
+%   \centering
+%   \includegraphics[height=3.2cm]{unizg_plavi_t2}\\
+%   \hangcaption{Primjer slike u ``Proširenom sažetku''; kod ove slike primjenjeno je
+%   \emph{vise\'{c}e} zaglavlje -- hangcaption}
+% \end{figure}
+% 
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=3.2cm]{fsb_logo_n}\\
+%   \hangcaption{Primjer slike u ``Proširenom sažetku''; kod ove slike primjenjeno je
+%   \emph{vise\'{c}e} zaglavlje -- hangcaption}
+% \end{figure}
+% 
+% \begin{figure}
+%   \centering
+%   \includegraphics[height=2.6cm]{fsb_logo_v}\\
+%   \hangcaption{Primjer slike u ``Proširenom sažetku''; kod ove slike primjenjeno je
+%   \emph{vise\'{c}e} zaglavlje -- hangcaption}
+% \end{figure}
+% 
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+% Tekst tekst tekst tekst tekst tekst.
+% 
+% U ``Proširenom sažetku'' također je moguće unijeti najbitnije jednadžbe iz
+% rada poput~\eqref{eq:ps.1}
+% \begin{equation}\label{eq:ps.1}
+% 	C_l(y)=\frac{2\Gamma(y)}{\Vinf\;c(y)}\:.
+% \end{equation}
+% Ukoliko numeracija jednadžbi nije od interesa ista se može ispustiti
+% \[
+% \Delta C_p=\frac{2}{\Vinf}\cdot\gamma\:.
+% \]
+% 
+% 
+% Tekst tekst tekst teks tekst tekst.
+% Tekst tekst tekst teks tekst tekst.
+% Tekst tekst tekst teks tekst tekst.
+% Tekst tekst tekst teks tekst tekst.
+% \end{prosirenisazetak}
+
+
+%-- ovdje pocinje pravi tekst: najelegantnije jest ubaciti ga kao posebne .tex
+%datoteke - jednu za cijeli tekst ili po jednu za svako poglavlje ili ...
+\clearpage
+\pagenumbering{arabic} % mjenjam brojke stranice: ali od 1
+\input Poglavlja/uvod.tex
+\addtocounter{brojslika}{\arabic{figure}}
+\addtocounter{brojtablica}{\arabic{table}}
+
+\input Poglavlja/teorija.tex
+\addtocounter{brojslika}{\arabic{figure}}
+\addtocounter{brojtablica}{\arabic{table}}
+
+\input Poglavlja/rezultati.tex
+\addtocounter{brojslika}{\arabic{figure}}
+\addtocounter{brojtablica}{\arabic{table}}
+% ... i tako dalje za ostala poglavlja
+
+\input Poglavlja/zakljuc.tex
+\addtocounter{brojslika}{\arabic{figure}}
+\addtocounter{brojtablica}{\arabic{table}}
+
+\appendix
+\input Poglavlja/prilog.tex
+\addtocounter{brojslika}{\arabic{figure}}
+\addtocounter{brojtablica}{\arabic{table}}
+
+% literatura:
+\newpage
+\ifpdf
+    \phantomsection
+\fi
+\bibliographystyle{unsrt} %abbrv
+\addcontentsline{toc}{chapter}{{\numberline{}\bibname}}
+\bibliography{literatura}
+
+\end{document}
