@@ -12,14 +12,14 @@ FSBthesis-modificirani je LaTeX stil koji je derivat originalnog FSBthesis stila
 ## Instalacija paketa i korištenje lokalno
 
 Za instalaciju LaTeX-a pratiti upute na <a href="https://www.latex-project.org/get/">link-u</a>. Osim 
-instalacije, potrebno je klonirati ovaj repozitorij naredbom:         
+instalacije LaTeX-a, potrebno je klonirati ovaj repozitorij naredbom:         
 
 `git clone https://github.com/Ginkbel/fsbthesis-modificirani.git`. 
 
 Kada ste klonirali repozitorij, najlakše je uređivati Vaš rad pomoću datoteke `glavni.tex`. Za 
 detaljnije upute i mogućnosti FSBthesis paketa vidjeti <a href="https://github.com/aerodyn/fsbthesis/blob/master/fsbthesis-doc.txt">dokumentaciju FSBthesis stila</a>.
 
-Za korištenje FSBthesis-modificirani stila, potrebno je još konfigurirati VS Code (ili neki drugi TeX editor, ali budući da sam koristio VS Code).
+Za korištenje FSBthesis-modificirani stila, potrebno je još konfigurirati VS Code (ili neki drugi TeX editor, no ovdje je samo objašnjeno konfiguriranje za VS Code).
 
 ## Postavke za korištenje s VS Code uređivačem koda
 
@@ -96,3 +96,5 @@ Zatim je potrebno napraviti promjene vrijednosti u `"latex-workshop.latex.tools"
 ```
 
 Na ovaj način datoteke koje su napravljane tijekom builda spremaju se u poseban direktorij `./build` te je bolja preglednost zbog manjeg broja mapa i datoteka u radnom direktoriju projekta.
+
+Autor: Jurica Vučković
