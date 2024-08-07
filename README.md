@@ -11,8 +11,6 @@ FSBthesis-modificirani je LaTeX stil koji je derivat originalnog FSBthesis stila
 
 ## Instalacija paketa i korištenje lokalno
 
-Postupak instalacije LaTeX-a i modificiranog FSBthesis paketa za korištenje lokalno (VS Code)
-
 Za instalaciju LaTeX-a pratiti upute na <a href="https://www.latex-project.org/get/">link-u</a>. Osim 
 instalacije, potrebno je klonirati ovaj repozitorij naredbom:         
 
