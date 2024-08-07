@@ -23,13 +23,13 @@ Za korištenje FSBthesis-modificirani stila, potrebno je još konfigurirati VS C
 
 ## Postavke za korištenje s VS Code uređivačem koda
 
-Najprije je potrebno instalirati <a href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop">LaTeX Workshop</a> ekstenziju za VS Code. Na linku se nalazi detaljan proces instalacije i korištenja. 
+Najprije je potrebno instalirati <a href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop">LaTeX Workshop</a> ekstenziju za VS Code. Na linku se nalaze detaljne upute za instalaciju i korištenje ekstenzije. 
 
 Za rad s ovim stilom, potrebno je definirati recepte za prevođenje `pdflatex -> bibtex -> pdflatex * 2` i `pdflatex ➞ makeindex ➞ pdflatex * 2`. 
 
-Za dodavanje novih ili uređivanje postojećih recepta potrebno je otvoriti _Command Palette_ naredbom `Ctrl+Shift+P` (ili `Cmd+Shift+P` na _MacOS_) te je potrebno upisati `Preferences: Open User Settings (JSON)`. Nakon izvođenja naredbe, otvara se JSON datoteka `settings.json` gdje se mogu konfigurirati postavke VS Code-a za trenutnog korisnika računala. 
+Za dodavanje novih ili uređivanje postojećih recepta potrebno je otvoriti _Command Palette_ naredbom `Ctrl+Shift+P` (ili `Cmd+Shift+P` na _MacOS_) te je potrebno upisati `Preferences: Open User Settings (JSON)` i pritisnuti `Enter`. Nakon izvođenja naredbe, otvara se JSON datoteka `settings.json` gdje se mogu konfigurirati postavke VS Code-a za trenutnog korisnika računala. 
 
-Dakle, potrebno je dodati ključu `"latex-workshop.latex.recipes"` vrijednosti:
+Potrebno je dodati ključu `"latex-workshop.latex.recipes"` vrijednosti:
 
 ```
             "name": "pdflatex -> bibtex -> pdflatex * 2",
@@ -53,7 +53,7 @@ Dakle, potrebno je dodati ključu `"latex-workshop.latex.recipes"` vrijednosti:
 
 Kada su definirani recepti u `settings.json` datoteci, moguće je buildati projekt. Najbolja praksa je koristiti recept `pdflatex ➞ makeindex ➞ pdflatex * 2` za prvi build projekta (kada ste obrisali sve datoteke, uključujući i PDF, prethodnog builda) kako bi se napravio popis oznaka i kratica. Kada se izvrši build s ovim receptom, popis oznaka i kratica se nalazi u datoteci `glavni.nls`.
 
-Svaki sljedeći build radi se s receptom `pdflatex -> bibtex -> pdflatex * 2`. Ako imate problema s redoslijedom popisa literature, obrišite sve datoteke koje se naprave tijekom buildanja (osim `glavni.nls` da zadržite popis oznaka).
+Svaki sljedeći build radi se s receptom `pdflatex -> bibtex -> pdflatex * 2`. Ako imate problema s redoslijedom popisa literature, obrišite sve datoteke koje se naprave tijekom buildanja (osim `glavni.nls` da zadržite popis oznaka) te ponovno napravite build.
 
 Koristan trik za urednost radnog direktorija projekta je definiranje varijable `%OUTDIR%` unutar lokalne `settings.json` datoteke. 
 
