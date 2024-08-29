@@ -29,7 +29,7 @@ Za rad s ovim stilom, potrebno je definirati recepte za prevođenje `pdflatex ->
 
 Za dodavanje novih ili uređivanje postojećih recepta potrebno je otvoriti _Command Palette_ naredbom `Ctrl+Shift+P` (ili `Cmd+Shift+P` na _MacOS_) te je potrebno upisati `Preferences: Open User Settings (JSON)` i pritisnuti `Enter`. Nakon izvođenja naredbe, otvara se JSON datoteka `settings.json` gdje se mogu konfigurirati postavke VS Code-a za trenutnog korisnika računala. 
 
-Potrebno je dodati ključu `"latex-workshop.latex.recipes"` vrijednosti:
+Potrebno je dodati ključu `"latex-workshop.latex.recipes"` vrijednosti (ukoliko je Vaša datoteka prazna, kopirajte kod iz [settings.json datoteka](#settingsjson-datoteka) te preskočite ostatak ovog poglavlja):
 
 ```
             "name": "pdflatex -> bibtex -> pdflatex * 2",
@@ -96,5 +96,238 @@ Zatim je potrebno napraviti promjene vrijednosti u `"latex-workshop.latex.tools"
 ```
 
 Na ovaj način datoteke koje su napravljane tijekom builda spremaju se u poseban direktorij `./build` te je bolja preglednost zbog manjeg broja mapa i datoteka u radnom direktoriju projekta.
+
+## settings.json datoteka
+
+Ukoliko je Vaša `settings.json` datoteka prazna, kopirajte sljedeće linije u Vašu datoteku te spremite:
+
+```
+{
+    "explorer.confirmDelete": false,
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.recipe.default": "lastUsed",
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex -> bibtex -> pdflatex * 2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "pdflatex ➞ makeindex ➞ pdflatex * 2",
+            "tools": [
+              "pdflatex",
+              "makeindex",
+              "pdflatex",
+              "pdflatex"
+            ]
+        },
+        {
+            "name": "latexmk",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "latexmk (latexmkrc)",
+            "tools": [
+                "latexmk_rconly"
+            ]
+        },
+        {
+            "name": "latexmk (lualatex)",
+            "tools": [
+                "lualatexmk"
+            ]
+        },
+        {
+            "name": "latexmk (xelatex)",
+            "tools": [
+                "xelatexmk"
+            ]
+        },
+        {
+            "name": "Compile Rnw files",
+            "tools": [
+                "rnw2tex",
+                "latexmk"
+            ]
+        },
+        {
+            "name": "Compile Jnw files",
+            "tools": [
+                "jnw2tex",
+                "latexmk"
+            ]
+        },
+        {
+            "name": "Compile Pnw files",
+            "tools": [
+                "pnw2tex",
+                "latexmk"
+            ]
+        },
+        {
+            "name": "tectonic",
+            "tools": [
+                "tectonic"
+            ]
+        }
+    ],
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "editor.minimap.enabled": false,
+    "[latex]": {
+        "editor.tabSize": 2
+    },
+    "editor.indentSize": "tabSize",
+    "latex-workshop.latex.tools": [
+        
+
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "--shell-escape",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "lualatexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-lualatex",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "xelatexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-xelatex",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "latexmk_rconly",
+            "command": "latexmk",
+            "args": [
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "--shell-escape",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%OUTDIR%",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%OUTDIR%/%DOCFILE%",
+            ],
+            "env": {}
+        },
+        {
+            "name": "rnw2tex",
+            "command": "Rscript",
+            "args": [
+                "-e",
+                "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
+            ],
+            "env": {}
+        },
+        {
+            "name": "jnw2tex",
+            "command": "julia",
+            "args": [
+                "-e",
+                "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"
+            ],
+            "env": {}
+        },
+        {
+            "name": "jnw2texminted",
+            "command": "julia",
+            "args": [
+                "-e",
+                "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pnw2tex",
+            "command": "pweave",
+            "args": [
+                "-f",
+                "tex",
+                "%DOC_EXT%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pnw2texminted",
+            "command": "pweave",
+            "args": [
+                "-f",
+                "texminted",
+                "%DOC_EXT%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "tectonic",
+            "command": "tectonic",
+            "args": [
+                "--synctex",
+                "--keep-logs",
+                "%DOC%.tex"
+            ],
+            "env": {}
+        },
+        { 
+            "name": "makeindex",
+            "command": "makeindex",
+            "args": [
+                "%OUTDIR%/%DOCFILE%.nlo",
+                "-s",
+                "nomencl.ist",
+                "-o",
+                "%OUTDIR%/%DOCFILE%.nls",
+            ]
+        }
+    ],
+    "git.enableSmartCommit": true,
+    "workbench.settings.applyToAllProfiles": [
+    ],
+    "latex-workshop.latex.outDir": "./build",
+    "explorer.confirmDragAndDrop": false
+}
+```
 
 Autor: Jurica Vučković
