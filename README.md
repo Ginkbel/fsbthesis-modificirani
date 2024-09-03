@@ -191,7 +191,6 @@ Ukoliko je Vaša `settings.json` datoteka prazna, kopirajte sljedeće linije u V
             "name": "latexmk",
             "command": "latexmk",
             "args": [
-                "--shell-escape",
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
@@ -236,7 +235,6 @@ Ukoliko je Vaša `settings.json` datoteka prazna, kopirajte sljedeće linije u V
             "name": "pdflatex",
             "command": "pdflatex",
             "args": [
-                "--shell-escape",
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
